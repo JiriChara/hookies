@@ -1,0 +1,29 @@
+{
+  "name": "hookiess",
+  "version": "1.0.0",
+  "authors": [
+    "Jiri Chara <me@jirichara.com>"
+  ],
+  "description": "Simple hooks for your JavaScript objects",
+  "license": "MIT",
+  "homepage": "https://github.com/JiriChara/hookies",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JiriChara/hookies.git"
+  },
+  "main": "./dist/hookies.min.js",
+  "ignore": [
+    "**/.*",
+    "karma.conf.js",
+    "package.json",
+    "spec",
+    "node_modules",
+    "vendor",
+    "Gruntfile.js",
+    "index.html",
+    "coverage"
+  ],
+  "devDependencies": {
+      "jasmine": "~2.0.x"
+  }
+}
