@@ -164,6 +164,15 @@ describe('Hookies.Hooks', function () {
             expect(this.lastArgs[2]).toBe(3);
             expect(this.lastArgs[3]).toBeUndefined();
         });
+
+        it('calls callback function with aditional arguments when event is an object', function () {
+            this.hookies.trigger({ name: 'foo', sync: true }, 1, 2, 3);
+
+            expect(this.lastArgs[0]).toBe(1);
+            expect(this.lastArgs[1]).toBe(2);
+            expect(this.lastArgs[2]).toBe(3);
+            expect(this.lastArgs[3]).toBeUndefined();
+        });
     });
 
     describe('off method', function () {

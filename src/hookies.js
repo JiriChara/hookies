@@ -1,4 +1,4 @@
-//  Hookies.JS v1.0.0
+//  Hookies.JS v1.0.1
 //  Jiri Chara <me@jirichara.com
 //  Copyright (c) 2014 Jiri Chara. All Rights Reserved.
 //  The MIT License (MIT) - See file 'LICENSE' in this project
@@ -26,7 +26,7 @@
     var previousHookies = root.Hookies;
 
     // Current version of the library.
-    Hookies.VERSION = '1.0.0';
+    Hookies.VERSION = '1.0.1';
 
     // Runs Hookies.js in *noConflict* mode, returning the `Hookies` variable
     // to its previous owner. Returns a reference to this Hookies object.
@@ -162,19 +162,17 @@
             self = this,
             sync;
 
-        args.shift(); // get rid of event
-
         if (isObject(event)) {
             if (isString(event.name)) {
                 base = event.context;
                 sync = event.sync;
                 event = event.name;
-
-                args.shift();
             } else {
                 throw new Error('Event object must contain name.');
             }
         }
+
+        args.shift(); // get rid of event
 
         validateEvent(event);
 
