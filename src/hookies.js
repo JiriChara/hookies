@@ -5,7 +5,7 @@
 
 (function (root, factory) {
     "use strict";
-    // Set up Backbone appropriately for the environment.
+    // Set up Hookies appropriately for the environment.
 
     // AMD
     if (typeof define === 'function' && define.amd) {
