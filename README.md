@@ -44,12 +44,85 @@ tom.hookies.trigger('detect-mouse', jerry);
 // Jerry runs away, because Tom is chasing him.
 ```
 
-
 ## Instalation
+
+is simple as:
 
 Bower `bower install hookies`
 
-Node.js `npm install hookies.js`
+Node.js `npm install hookies`
+
+## Usage
+
+You have already seen, that `Hookies` can be mixed into your object, but you can also inherit from `Hookie.Hooks()` to achive the similar effect:
+
+```javascript
+var Cat = function (name) {
+    this.name = name;
+
+    // Set the `hookiesBase` in order to execute callback function in context
+    // of Cat instance. This means that `this` inside callback functions will
+    // be an instance of a Cat (you can always change the context within `on`
+    // or even `trigger` method.
+    // If you don't set `hookiesBase`, then callback will be executed in
+    // context of empty object `{}` by default
+    this.hookiesBase = this;
+
+    this.on('drink', function () {
+        console.log(this.name + ' is drinking milk.');
+    });
+};
+
+Cat.prototype = new Hookies.Hooks();
+
+var tom = new Cat('Tom');
+
+tom.trigger('drink');
+// Tom is drinking milk
+```
+
+You can also use `Hookies.Hooks` as a standalone object:
+
+```javascript
+var myHookie = new Hookies.Hooks();
+
+// Second argument can be optionally and object which will represent `this`
+// inside a callback
+myHookie.on('foo', { name: 'John' }, function () {
+    console.log(this.name, arguments);
+});
+
+myHookie.trigger('foo', 1, 2, 3);
+// John [1, 2, 3]
+```
+
+Callback functions are executed asynchronously, but you can force them to run synchronously too:
+
+```javascript
+var myHookie = new Hookies.Hooks();
+
+myHookie.on('foo', { name: 'John' }, function () {
+    console.log(this.name, arguments);
+});
+
+myHookie.trigger({
+    name: 'foo',
+    sync: true, // run synchronously
+    // you can overwrite `this` inside callback function whenever you need to
+    context: { name: 'Bob' }
+}, 1, 2, 3);
+
+console.log('I am sync');
+
+myHookie.trigger('foo', 1, 2, 3);
+
+console.log('I am async');
+
+// Bob [1, 2, 3]
+// I am sync
+// I am async
+// John [1, 2, 3]
+```
 
 ## License
 The MIT License (MIT) - See file 'LICENSE' in this project
