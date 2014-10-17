@@ -44,9 +44,9 @@ tom.hookies.trigger('detect-mouse', jerry);
 // Jerry runs away, because Tom is chasing him.
 ```
 
-## Instalation
+## Installation
 
-is simple as:
+As simple as:
 
 Bower `bower install hookies`
 
