@@ -1,4 +1,4 @@
-//  Hookies.JS v1.0.2
+//  Hookies.JS v1.0.3
 //  Jiri Chara <me@jirichara.com>
 //  Copyright (c) 2014 Jiri Chara. All Rights Reserved.
 //  The MIT License (MIT) - See file 'LICENSE' in this project
@@ -10,7 +10,7 @@
     // AMD
     if (typeof define === 'function' && define.amd) {
         define(['exports'], function(exports) {
-            root.Backbone = factory(root, exports);
+            root.Hookies = factory(root, exports);
         });
     } else if (typeof exports !== 'undefined') {
         factory(root, exports);
@@ -26,7 +26,7 @@
     var previousHookies = root.Hookies;
 
     // Current version of the library.
-    Hookies.VERSION = '1.0.2';
+    Hookies.VERSION = '1.0.3';
 
     // Runs Hookies.js in *noConflict* mode, returning the `Hookies` variable
     // to its previous owner. Returns a reference to this Hookies object.
