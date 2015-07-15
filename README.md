@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/JiriChara/hookies.svg)](https://travis-ci.org/JiriChara/hookies)
-[![Code Climate](https://codeclimate.com/repos/55a6b66fe30ba077b6004f03/badges/af1221703388a04ae336/gpa.svg)](https://codeclimate.com/repos/55a6b66fe30ba077b6004f03/feed)
-[![Test Coverage](https://codeclimate.com/repos/55a6b66fe30ba077b6004f03/badges/af1221703388a04ae336/coverage.svg)](https://codeclimate.com/repos/55a6b66fe30ba077b6004f03/coverage)
+[![Code Climate](https://codeclimate.com/github/JiriChara/hookies/badges/gpa.svg)](https://codeclimate.com/github/JiriChara/hookies)
+[![Test Coverage](https://codeclimate.com/github/JiriChara/hookies/badges/coverage.svg)](https://codeclimate.com/github/JiriChara/hookies/coverage)
 [![Dependency Status](https://gemnasium.com/JiriChara/hookies.svg)](https://gemnasium.com/JiriChara/hookies)
 
 # hookies v1.0.3
