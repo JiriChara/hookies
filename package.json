@@ -1,11 +1,11 @@
 {
   "name": "hookies",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Jiri Chara <me@jirichara.com>",
   "description": "Simple hooks for your JavaScript objects",
   "license": "MIT",
   "homepage": "https://github.com/JiriChara/hookies",
-  "main": "./dist/hookiess.min.js",
+  "main": "src/hookies.js",
   "files": [
     "src/hookies.js",
     "dist/hookies.min.js",
