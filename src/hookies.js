@@ -1,4 +1,4 @@
-//  Hookies.JS v1.0.4
+//  Hookies.JS v1.0.5
 //  Jiri Chara <me@jirichara.com>
 //  Copyright (c) 2014 Jiri Chara. All Rights Reserved.
 //  The MIT License (MIT) - See file 'LICENSE' in this project
@@ -26,7 +26,7 @@
     var previousHookies = root.Hookies;
 
     // Current version of the library.
-    Hookies.VERSION = '1.0.4';
+    Hookies.VERSION = '1.0.5';
 
     // Runs Hookies.js in *noConflict* mode, returning the `Hookies` variable
     // to its previous owner. Returns a reference to this Hookies object.
