@@ -188,12 +188,40 @@
 
     // Unsubscribe to an event
     // Event must be a string
-    Hookies.Hooks.prototype.off = function (event) {
-        var eventHooks = this.hooks[event];
+    // Return the count of removed subscription methods
+    Hookies.Hooks.prototype.off = function (event, callback) {
+        var eventHooks = this.hooks[event],
+            index,
+            i,
+            eventsLength = isArray(eventHooks) ? eventHooks.length : 0,
+            isNotEmptyEvents = eventsLength > 0,
+            fnArray = [];
 
-        if (isArray(eventHooks) && eventHooks.length > 0) {
-            this.hooks[event] = [];
+        if (!isString(event)) {
+            throw new Error('Event must be a string');
         }
+
+        if (!isFunction(callback) && callback !== undefined) {
+            throw new Error('Callback must be a function');
+        }
+
+        if (isNotEmptyEvents && isFunction(callback)) {
+            for (i = 0; i < eventsLength; i++) {
+                fnArray.push(eventHooks[i].fn);
+            }
+
+            index = fnArray.indexOf(callback);
+
+            if (index !== -1) {
+                return this.hooks[event].splice(index, 1) && 1;
+            }
+
+            return 0;
+        }
+
+        return isNotEmptyEvents ?
+            ((this.hooks[event] = []) && eventsLength) :
+            0;
     };
 
     // Clear all hooks (unsubscribe all)

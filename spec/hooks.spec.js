@@ -176,18 +176,79 @@ describe('Hookies.Hooks', function () {
     });
 
     describe('off method', function () {
-        it('sets hooks for given event to []', function () {
+        it('sets hooks for given event to [] if no cb is given', function () {
             this.hookies.on('foo', function () {});
             this.hookies.on('foo', function () {});
+
             expect(this.hookies.hooks.foo.length).toBe(2);
-            this.hookies.off('foo');
+
+            var removed = this.hookies.off('foo');
+
             expect(this.hookies.hooks.foo.length).toBe(0);
+
+            expect(removed).toEqual(2);
         });
 
-        it('does not clear non-exeisting hooks', function () {
+        it('removes hooks for specific callback only', function () {
+            var cb1 = function () {};
+            var cb2 = function () {};
+
+            this.hookies.on('foo', cb1);
+            this.hookies.on('foo', cb2);
+
+            expect(this.hookies.hooks.foo.length).toBe(2);
+
+            var removed = this.hookies.off('foo', cb1);
+
+            expect(this.hookies.hooks.foo.length).toBe(1);
+            expect(this.hookies.hooks.foo[0].fn).toBe(cb2);
+            expect(this.hookies.hooks.foo[0].fn).not.toBe(cb1);
+
+            expect(removed).toEqual(1);
+
+            removed = this.hookies.off('foo', cb2);
+
+            expect(this.hookies.hooks.foo.length).toBe(0);
+
+            expect(removed).toEqual(1);
+        });
+
+        it('does not clear non-existing hooks', function () {
             expect(this.hookies.hooks.foo).toBeUndefined();
-            this.hookies.off('foo');
+
+            var removed = this.hookies.off('foo');
+
             expect(this.hookies.hooks.foo).toBeUndefined();
+
+            expect(removed).toEqual(0);
+        });
+
+        it('throws an error if event is not a string', function () {
+            var wrong = [1, {}, [], undefined],
+                i,
+                selfie = this;
+
+            for (i = 0; i < wrong.length; i++) {
+                expect(function () {
+                    selfie.hookies.off(wrong[i]);
+                }).toThrowError(
+                    'Event must be a string'
+                );
+            }
+        });
+
+        it('throws an error if callback is no a function', function () {
+            var wrong = [1, {}, [], null],
+                i,
+                selfie = this;
+
+            for (i = 0; i < wrong.length; i++) {
+                expect(function () {
+                    selfie.hookies.off('foo', wrong[i]);
+                }).toThrowError(
+                    'Callback must be a function'
+                );
+            }
         });
     });
 
