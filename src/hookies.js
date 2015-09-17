@@ -160,7 +160,9 @@
             i,
             cb,
             self = this,
-            sync;
+            sync,
+            events,
+            eventsLength;
 
         if (isObject(event)) {
             if (isString(event.name)) {
@@ -176,12 +178,17 @@
 
         validateEvent(event);
 
-        for (i in (this.hooks[event] || [])) {
-            if (this.hooks.hasOwnProperty(event)) {
-                cb = this.hooks[event][i];
-                if (isObject(cb)) {
-                    exec(cb.fn, base || cb.context || self.hookiesBase, !!sync, args);
-                }
+        for (
+            i = 0,
+            events = (this.hooks[event] || []),
+            eventsLength = events.length;
+            i < eventsLength;
+            i++
+        ) {
+            cb = events[i];
+
+            if (isObject(cb)) {
+                exec(cb.fn, base || cb.context || self.hookiesBase, !!sync, args);
             }
         }
     };
