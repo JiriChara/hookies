@@ -1,6 +1,6 @@
 {
   "name": "hookies",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Jiri Chara <me@jirichara.com>",
   "description": "Simple hooks for your JavaScript objects",
   "license": "MIT",
