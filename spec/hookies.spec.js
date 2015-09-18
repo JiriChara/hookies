@@ -48,5 +48,15 @@ describe('Hookies', function () {
 
             expect(f.hookies.hookiesBase).toBe(f);
         });
+
+        it('sets async method of Hookies.Hooks if given', function () {
+            var f = function () {};
+            var c = function () {};
+            Hookies.mixin(f, {
+                customAsyncMethod: c
+            });
+
+            expect(f.hookies.customAsyncMethod).toBe(c);
+        });
     });
 });

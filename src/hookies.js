@@ -1,4 +1,4 @@
-//  Hookies.JS v1.0.6
+//  Hookies.JS v1.0.7
 //  Jiri Chara <me@jirichara.com>
 //  Copyright (c) 2014 Jiri Chara. All Rights Reserved.
 //  The MIT License (MIT) - See file 'LICENSE' in this project
@@ -26,7 +26,7 @@
     var previousHookies = root.Hookies;
 
     // Current version of the library.
-    Hookies.VERSION = '1.0.6';
+    Hookies.VERSION = '1.0.7';
 
     // Runs Hookies.js in *noConflict* mode, returning the `Hookies` variable
     // to its previous owner. Returns a reference to this Hookies object.
@@ -67,7 +67,7 @@
     };
 
     // Exec given callback
-    var exec = function (callback, context, sync, args) {
+    var exec = function (callback, context, sync, customAsyncMethod, args) {
         if (isFunction(callback)) {
             var deliver = function () {
                 callback.apply(context, args);
@@ -76,18 +76,18 @@
             if (sync === true) {
                 deliver();
             } else {
-                setTimeout(function () { deliver(); }, 0);
+                (customAsyncMethod || setTimeout)(deliver, 0);
             }
         }
     };
 
     // Add hooks to the given object
-    Hookies.mixin = function (base) {
+    Hookies.mixin = function (base, options) {
         if (!isObject(base)) {
             throw new Error('Base object must be an object. Got: ' + base);
         }
 
-        base.hookies = new Hookies.Hooks(base);
+        base.hookies = new Hookies.Hooks(base, options);
 
         return this;
     };
@@ -96,12 +96,17 @@
     // -----------------------------
 
     // Definition of a Hookies.Hooks class
-    Hookies.Hooks = function (base) {
+    Hookies.Hooks = function (base, options) {
+        options = options || {};
+
         // Variable for hooks storage
         this.hooks = {};
 
         // Base object to add hooks to
         this.hookiesBase = base || {};
+
+        // Custom async method (useful if you wanna use Angular $timeout)
+        this.customAsyncMethod = options.customAsyncMethod || null;
     };
 
     var validateEvent = function (event) {
@@ -188,7 +193,13 @@
             cb = events[i];
 
             if (isObject(cb)) {
-                exec(cb.fn, base || cb.context || self.hookiesBase, !!sync, args);
+                exec.call(
+                    this,
+                    cb.fn, base || cb.context || self.hookiesBase,
+                    !!sync,
+                    self.customAsyncMethod,
+                    args
+                );
             }
         }
     };

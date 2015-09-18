@@ -25,6 +25,18 @@ describe('Hookies.Hooks', function () {
         it('sets base to given object', function () {
             expect(this.hookies.hookiesBase).toEqual(this.mockObj);
         });
+
+        it('defaults customAsyncMethod to null', function () {
+            expect(this.hookies.customAsyncMethod).toEqual(null);
+        });
+
+        it('sets customAsyncMethod to given one', function () {
+            var hooky = new Hookies.Hooks({}, {
+                customAsyncMethod: this.mockObj
+            });
+
+            expect(hooky.customAsyncMethod).toEqual(this.mockObj);
+        });
     });
 
     describe('on method', function () {
@@ -129,6 +141,26 @@ describe('Hookies.Hooks', function () {
             expect(this.callback).not.toHaveBeenCalled();
 
             jasmine.clock().tick(1);
+
+            expect(this.callback).toHaveBeenCalled();
+        });
+
+        it('calls the callback with customAsyncMethod', function () {
+            var hooky = new Hookies.Hooks({}, {
+                customAsyncMethod: function (cb) {
+                    setTimeout(function () {
+                        cb();
+                    }, 1);
+                }
+            });
+
+            hooky.on('foo', this.callback);
+
+            hooky.trigger('foo');
+
+            expect(this.callback).not.toHaveBeenCalled();
+
+            jasmine.clock().tick(2);
 
             expect(this.callback).toHaveBeenCalled();
         });
