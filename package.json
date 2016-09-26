@@ -1,11 +1,21 @@
 {
   "name": "hookies",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Jiri Chara <jiri@chara.vip>",
   "description": "Simple hooks for your JavaScript objects",
   "license": "MIT",
   "homepage": "https://github.com/JiriChara/hookies",
-  "main": "lib/Hookies.js",
+  "main": "lib/index.js",
+  "files": {
+    "lib/exec.js",
+    "lib/Hooks.js",
+    "lib/index.js",
+    "lib/validateEvent.js",
+    "lib/VERSION.js",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:JiriChara/hookies.git"

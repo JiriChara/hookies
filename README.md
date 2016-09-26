@@ -3,7 +3,7 @@
 [![Test Coverage](https://codeclimate.com/github/JiriChara/hookies/badges/coverage.svg)](https://codeclimate.com/github/JiriChara/hookies/coverage)
 [![Dependency Status](https://gemnasium.com/JiriChara/hookies.svg)](https://gemnasium.com/JiriChara/hookies)
 
-# hookies v2.0.0
+# hookies
 
 Hookies is a very simple object specific publish/subscribe library. Hookies allows you to create "as many as you need" independent objects that will enjoy it's own `on`|`off` and `trigger` methods. Let me give you an example:
 
