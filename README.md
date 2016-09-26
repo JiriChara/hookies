@@ -8,7 +8,7 @@
 Hookies is a very simple object specific publish/subscribe library. Hookies allows you to create "as many as you need" independent objects that will enjoy it's own `on`|`off` and `trigger` methods. Let me give you an example:
 
 ```javascript
-import Hooks from 'hookies';
+import { Hooks } from 'hookies';
 
 class Cat extends Hooks {
   constructor(name) {
@@ -55,7 +55,7 @@ As simple as:
 ## Usage
 
 ```javascript
-import Hooks from 'hookies';
+import { Hooks } from 'hookies';
 
 const myHookie = new Hooks();
 
@@ -72,6 +72,8 @@ myHookie.trigger('foo', 1, 2, 3);
 Callback functions are executed asynchronously by default, but you can force them to run synchronously too:
 
 ```javascript
+import { Hooks } from 'hookies';
+
 const myHookie = new Hookies.Hooks();
 
 myHookie.on('foo', { name: 'John' }, function () {

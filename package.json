@@ -1,12 +1,12 @@
 {
   "name": "hookies",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Jiri Chara <jiri@chara.vip>",
   "description": "Simple hooks for your JavaScript objects",
   "license": "MIT",
   "homepage": "https://github.com/JiriChara/hookies",
   "main": "lib/index.js",
-  "files": {
+  "files": [
     "lib/exec.js",
     "lib/Hooks.js",
     "lib/index.js",
@@ -15,7 +15,7 @@
     "LICENSE",
     "README.md",
     "package.json"
-  },
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:JiriChara/hookies.git"
