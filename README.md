@@ -12,12 +12,14 @@ import Hooks from 'hookies';
 
 class Cat extends Hooks {
   constructor(name) {
+    super();
     this.name = name;
   }
 }
 
 class Mouse extends Hooks {
   constructor(name) {
+    super();
     this.name = name;
   }
 }
