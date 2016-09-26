@@ -1,36 +1,82 @@
 {
   "name": "hookies",
-  "version": "1.0.7",
-  "author": "Jiri Chara <me@jirichara.com>",
+  "version": "2.0.0",
+  "author": "Jiri Chara <jiri@chara.vip>",
   "description": "Simple hooks for your JavaScript objects",
   "license": "MIT",
   "homepage": "https://github.com/JiriChara/hookies",
-  "main": "src/hookies.js",
-  "files": [
-    "src/hookies.js",
-    "dist/hookies.min.js",
-    "LICENSE",
-    "README.md"
-  ],
+  "main": "lib/Hookies.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:JiriChara/hookies.git"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.x",
-    "grunt-contrib-uglify": "~0.6.x",
-    "istanbul": "^0.3.2",
-    "karma": "^0.12.23",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-coverage": "^0.2.6",
-    "karma-jasmine": "^0.2.0",
-    "karma-phantomjs-launcher": "^0.1.4"
   },
   "bugs": {
     "url": "https://github.com/JiriChara/hookies/issues"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "clean": "rimraf lib dist coverage esdoc",
+    "dist": "mkdirp dist && browserify src/index.js -t [ babelify --presets [es2015] ] --standalone Hookies --outfile dist/Hookies.js",
+    "doc": "mkdirp esdoc && esdoc -c esdoc.json",
+    "test": "nyc ava",
+    "lint": "eslint src spec",
+    "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir lib",
+    "build": "npm run lint && npm run test && npm run clean && npm run dist && npm run uglify && npm run build:commonjs && npm run doc",
+    "uglify": "uglifyjs dist/Hookies.js -o dist/Hookies.min.js"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "dist": "^0.1.2",
+    "esdoc": "^0.4.8",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.2",
+    "nyc": "^8.3.0",
+    "rimraf": "^2.5.4",
+    "sinon": "^1.17.6",
+    "tap-nyan": "0.0.2",
+    "uglify-js": "^2.7.3"
+  },
+  "ava": {
+    "files": [
+      "spec/*.spec.js"
+    ],
+    "source": [
+      "src/*.js"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "tap": true,
+    "powerAssert": false,
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ]
+  },
+  "dependencies": {
+    "lodash.contains": "^2.4.3",
+    "lodash.filter": "^4.6.0",
+    "lodash.foreach": "^4.5.0",
+    "lodash.forown": "^4.4.0",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.isfunction": "^3.0.8",
+    "lodash.isobject": "^3.0.2",
+    "lodash.isstring": "^4.0.1",
+    "lodash.isundefined": "^3.0.1",
+    "lodash.map": "^4.6.0"
   }
 }
