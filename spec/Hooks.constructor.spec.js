@@ -27,7 +27,7 @@ test('sets customAsyncMethod', (t) => {
 });
 
 test('initializes hookiesBase', (t) => {
-  t.is(t.context.hooksInstance.hookiesBase, null);
+  t.is(t.context.hooksInstance.hookiesBase, t.context.hooksInstance);
 });
 
 test('sets hookiesBase', (t) => {

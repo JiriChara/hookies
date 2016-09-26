@@ -12,7 +12,7 @@ import exec from './exec';
 import validateEvent from './validateEvent';
 
 export default class Hooks {
-  constructor({ customAsyncMethod = setTimeout, hookiesBase = null } = {}) {
+  constructor({ customAsyncMethod = setTimeout, hookiesBase = this } = {}) {
     // Storage for registered hooks
     this.hooks = {};
 
