@@ -17,11 +17,11 @@
     "clean": "rimraf lib dist coverage esdoc",
     "dist": "mkdirp dist && browserify src/index.js -t [ babelify --presets [es2015] ] --standalone Hookies --outfile dist/Hookies.js",
     "doc": "mkdirp esdoc && esdoc -c esdoc.json",
-    "test": "nyc ava",
+    "test": "npm run lint && nyc ava",
     "report": "nyc report --reporter=lcov",
     "lint": "eslint src spec",
     "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir lib",
-    "build": "npm run lint && npm run test && npm run clean && npm run dist && npm run uglify && npm run build:commonjs && npm run doc && npm run report",
+    "build": "npm run test && npm run clean && npm run dist && npm run uglify && npm run build:commonjs && npm run doc && npm run report",
     "uglify": "uglifyjs dist/Hookies.js -o dist/Hookies.min.js"
   },
   "devDependencies": {
