@@ -2,8 +2,10 @@
 /* eslint no-param-reassign:0 */
 import test from 'ava';
 import sinon from 'sinon';
-import contains from 'lodash.contains';
-import map from 'lodash.map';
+import {
+  includes,
+  map
+} from 'lodash';
 
 import Hooks from '../src/Hooks';
 
@@ -47,7 +49,7 @@ test('creates new subscriber', (t) => {
 
   const callbacks = map(eventHooks, o => o.fn);
 
-  t.true(contains(callbacks, cbFunction));
+  t.true(includes(callbacks, cbFunction));
 
   t.deepEqual(eventHooks[0], {
     context: null,

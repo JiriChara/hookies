@@ -1,12 +1,14 @@
-import isString from 'lodash.isstring';
-import isObject from 'lodash.isobject';
-import isFunction from 'lodash.isfunction';
-import isArray from 'lodash.isarray';
-import isUndefined from 'lodash.isundefined';
-import forEach from 'lodash.foreach';
-import filter from 'lodash.filter';
-import isEmpty from 'lodash.isempty';
-import forOwn from 'lodash.forown';
+import {
+  isString,
+  isObject,
+  isFunction,
+  isArray,
+  isUndefined,
+  forEach,
+  filter,
+  isEmpty,
+  forOwn
+} from 'lodash';
 
 import exec from './exec';
 import validateEvent from './validateEvent';
