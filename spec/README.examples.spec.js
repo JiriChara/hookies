@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies:0 */
 /* eslint no-param-reassign:0 */
 import test from 'ava';
-import isFunction from 'lodash.isfunction';
+import { isFunction } from 'lodash';
 
 import Hooks from '../src/Hooks';
 

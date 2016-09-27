@@ -1,4 +1,4 @@
-import isString from 'lodash.isstring';
+import { isString } from 'lodash';
 
 const validateEvent = (event) => {
   if (!isString(event)) {
