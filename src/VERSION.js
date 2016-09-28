@@ -1,5 +1,3 @@
-import pkg from '../package.json';
-
-const VERSION = pkg.version;
+const VERSION = '2.0.5';
 
 export default VERSION;
